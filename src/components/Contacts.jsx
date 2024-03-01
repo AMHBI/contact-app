@@ -30,14 +30,14 @@ function Contacts() {
     const value = event.target.value;
     setContact((contact) => ({ ...contact, [name]: value }));
   };
-  const addHandler = async () => {
+  const addHandler = () => {
     if (
       !contact.name ||
       !contact.lastName ||
       !contact.email ||
       !contact.phone
     ) {
-      showToast("All fields must be filled");
+      showToast("All fields must be filled","error");
       return;
     }
 
@@ -53,7 +53,9 @@ function Contacts() {
   };
   return (
     <div>
-      <div>
+      <div className="*:w-full md:*:w-[45%] *:m-3 *:h-12 *:p-2 *:pl-5 *:hover:outline-none *:active:outline-none
+       *:bg-accent *:rounded-lg *:text-primary *:placeholder:text-primary 
+      flex flex-wrap items-center justify-evenly ">
         <input
           name='name'
           type='text'
@@ -78,13 +80,14 @@ function Contacts() {
         <input
           name='phone'
           type='number'
+          inputMode='numeric'
           placeholder='Phone'
           value={contact.number}
           onChange={changeHandler}
         />
-        <button onClick={addHandler}>Add Contact</button>
-        <ToastContainer />
       </div>
+        <ToastContainer />
+        <button onClick={addHandler}>Add Contact</button>
       <ContactsList contacts={contacts} />
     </div>
   );
