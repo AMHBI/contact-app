@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { v4 } from "uuid";
@@ -6,9 +6,12 @@ import ContactsList from "./ContactsList.jsx";
 
 import inputs from "../utils/inputs.js";
 import showToast from "../utils/showToast.js";
+import saveToLocalStorage from "../utils/saveToLocalStorage.js";
 
 function Contacts() {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem("contacts")) || []
+  );
   const [contact, setContact] = useState({
     id: "",
     name: "",
@@ -23,7 +26,7 @@ function Contacts() {
     setContact((contact) => ({ ...contact, [name]: value, id: v4() }));
   };
 
-  const addHandler = () => {
+  const addHandler = async () => {
     if (
       !contact.name ||
       !contact.lastName ||
@@ -42,8 +45,16 @@ function Contacts() {
       phone: "",
     });
     showToast("Contact added successfully!", "success");
-    console.log(contacts);
   };
+  const deleteHandler = (id)=>{
+   const newContacts = contacts.filter(c=> c.id !== id);
+   showToast( `Contact deleted`,"info")
+   setContacts(newContacts);
+   
+  }
+  useEffect(() => {
+    saveToLocalStorage(contacts);
+  }, [contacts]);
   return (
     <div className='flex flex-col justify-center items-center mt-16'>
       <div
@@ -63,11 +74,11 @@ function Contacts() {
       </div>
       <ToastContainer />
       <button
-        className='w-[30dvw] bg-primary text-white m-10 h-16 rounded-lg'
+        className='add_button'
         onClick={addHandler}>
         Add Contact
       </button>
-      <ContactsList contacts={contacts} />
+      <ContactsList contacts={contacts} deleteHandler={deleteHandler} />
     </div>
   );
 }

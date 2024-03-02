@@ -1,33 +1,16 @@
-import avatar from "../assets/icons/user.svg";
-import trash from "../assets/icons/delete.svg";
-import email from "../assets/icons/email.svg";
-import phone from "../assets/icons/phone.svg";
+import ContactItem from "./ContactItem";
 
-function ContactsList({ contacts }) {
+function ContactsList({ contacts, deleteHandler }) {
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-4">
-      <h2>Contacts</h2>
-      <ul className="contacts_list">
+    <div className='contacts_list'>
+      <h2 >Contacts</h2>
+      <ul>
         {contacts.map((contact) => (
-          <li key={contact.id}>
-            <div>
-              <img src={avatar} alt='' />
-              <p>
-                Name: {contact.name} {contact.lastName}
-              </p>
-            </div>
-            <div>
-              <img src={email} alt='Email' />
-              <p>E-mail: {contact.email}</p>
-            </div>
-            <div>
-            <img src={phone} alt="Phone" />
-            <p>Phone Number: {contact.phone}</p>
-            </div>
-            <div>
-              <img src={trash} alt="delete" />
-            </div>
-          </li>
+          <ContactItem
+            contact={contact}
+            key={contact.id}
+            deleteHandler={deleteHandler} 
+          />
         ))}
       </ul>
     </div>

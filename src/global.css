@@ -8,14 +8,32 @@
   @apply font-inter;
 }
 body {
-  @apply max-w-[90%] md:max-w-[70%] mx-auto  min-h-screen py-12 bg-back;
+  @apply max-w-[90%] md:max-w-[70%] mx-auto  min-h-screen py-12 bg-back box-border;
+}
+.add_button{
+  @apply w-[95%] md:w-[30dvw] bg-primary text-white m-10 h-12 md:h-16 rounded-lg
 }
 .contacts_list{
-  @apply w-full
+  @apply min-w-full flex flex-col justify-center items-center gap-4
 }
-.contacts_list :is(div,li) {
-  @apply flex items-center justify-evenly
+.contacts_list ul :is(div,li) {
+  @apply flex  items-center justify-center my-3
+}
+.contacts_list li {
+  @apply min-w-[90dvw] flex-col md:flex-row rounded-xl
+}
+.contacts_list li:nth-child(odd){
+  @apply bg-slate-200
+}
+.contacts_list li:nth-child(even){
+  @apply bg-slate-100
+}
+.contacts_list li div{
+  @apply min-w-full md:min-w-[21dvw]
 }
 .contacts_list img {
-  @apply size-8
+  @apply size-8 mr-4 bg-white p-1 rounded-full flex items-center justify-center shadow-md
+}
+.contacts_list img:last-child {
+  @apply cursor-pointer 
 }

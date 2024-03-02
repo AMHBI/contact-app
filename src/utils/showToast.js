@@ -1,18 +1,36 @@
-import {toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const showToast = (alert, type) => {
-    if (type === "error") {
-      toast.error(alert, {
-        position: "top-center",
-        theme: "colored",
-      });
-    } else if (type === "success") {
-      toast.success(alert, {
-        position: "top-center",
-        theme: "colored",
-      });
-    }
-  };
+  switch (type) {
+    case "error":
+      {
+        toast.error(alert, {
+          position: "top-center",
+          theme: "colored",
+        });
+      }
+      break;
+    case "success":
+      {
+        toast.success(alert, {
+          position: "top-center",
+          theme: "colored",
+        });
+      }
+      break;
+    case "info":
+      {
+        toast.info(alert, {
+          position: "top-center",
+          theme: "colored",
+        });
+      }
+      break;
+    default:
+      break;
+  }
 
-  export default showToast
+};
+
+export default showToast;
