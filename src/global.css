@@ -10,3 +10,12 @@
 body {
   @apply max-w-[90%] md:max-w-[70%] mx-auto  min-h-screen py-12 bg-back;
 }
+.contacts_list{
+  @apply w-full
+}
+.contacts_list :is(div,li) {
+  @apply flex items-center justify-evenly
+}
+.contacts_list img {
+  @apply size-8
+}
