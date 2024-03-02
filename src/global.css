@@ -16,6 +16,9 @@ body {
 .contacts_list{
   @apply min-w-full flex flex-col justify-center items-center gap-4
 }
+.contacts_list h2 {
+  @apply text-2xl font-semibold text-secondary w-1/6 text-center p-2 rounded-md shadow-xl
+}
 .contacts_list ul :is(div,li) {
   @apply flex  items-center justify-center my-3
 }

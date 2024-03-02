@@ -78,7 +78,11 @@ function Contacts() {
         onClick={addHandler}>
         Add Contact
       </button>
-      <ContactsList contacts={contacts} deleteHandler={deleteHandler} />
+      {
+        contacts.length > 0 ?
+        <ContactsList contacts={contacts} deleteHandler={deleteHandler} />:
+        <p>No contacts yet !</p>
+      }
     </div>
   );
 }
